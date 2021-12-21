@@ -1,3 +1,17 @@
+/*Добрый день. Работа пока что отклоняется от проверки без потери итерации: (разверните комментарий ⏬)
+•	один или несколько блоков неверно отображаются в Firefox, Google Chrome или Yandex Browser (1. У секции feynman нужно удалить всю красную обводку. 2. У секции footer неверные высота и ширина, а также есть проблемы с подключением иконок соцсетей, если открыть страницу локально http://joxi.ru/vAWEMaLuBbaKEm, для импортов необходимо использовать относительные пути, подробнее тут https://html5book.ru/hyperlinks-in-html/)
+•	не применяется технология выравнивания или построения сетки (необходимо удалить абсолют и координаты у элементов logo (абсолют нужно перенести в logo_place_header, а у лого футера его быть не должно), header__title, footer__author и использовать флекс и отступы margin/padding для выравнивания элементов)
+Желательно исправить перед первой итерацией:
+•	Обратите внимание на классы в секции description, сейчас там используются модификаторы, которых быть не должно. Классы должны называться в строгом соответствии с брифом
+•	Обратите внимание на классы в секции digits, в ней тоже не должно быть модификаторов, обратите внимание на то, какое количество нижних подчеркиваний должно быть в модификаторах и элементах. Также эти же классы используются в секции kaufman, там их тоже нужно поправить)
+*/
+
+/*Доброго вренеми суток! Постарался все исправить.*/
+
+/*Добрый вечер! Спасибр за подробное ревью. Благодоря Вашим замечаниям узнал моног нового. Провел работу над ошибками. Постарался все учесть.*/
+
+/*Нельзя просто так взять и написать код правильно) Спасибо!*/
+
 .page {
   min-width: 1100px;
   /* мы ещё не умеем делать мобильную версию сайта, */
@@ -25,37 +39,34 @@
 }
 
 .logo {
-  position: absolute;
-  background-image: url('../images/logo_place_header.svg');
   background-repeat: no-repeat;
 }
 .logo_place_header {
+  background-image: url('../images/logo_place_header.svg');
+  position: absolute;
   height: 32px;
   width: 183px;
-  margin-top: 30px;
-  margin-left: 64px;
+  top: 30px;
+  left: 64px;
   z-index: 6;
 }
 
 .header__title {
-  position: absolute;
-  top: 30%;
-  align-items: center;
   max-width: 730px;
-  margin: 64px;
+  margin: auto 0 auto 64px;
   z-index: 5;
   line-height: 96px;
   font-size: 102px;
-  font-weight: 600;
+  font-weight: 700;
   color: #000000;
 }
 
 .header__subtitle { 
   position: absolute;
-  bottom: 0%;
+  left: 64px;
+  bottom: 30px;
   width: 388px;
-  margin-left: 64px;
-  margin-bottom: 30px;
+  margin: 0;
   z-index: 4;
   line-height: 25px;
   font-size: 18px;
@@ -63,28 +74,27 @@
   color: #000000;
 }
 
-a {
+.header__link {
   color: #2f80ed;
   text-decoration: none;
 }
 
 /* ниже мы привели пример двух селекторов, чтобы вы вспомнили запись элемента */
-.header__square-pic {
+.header__main-illustration {
   position: absolute;
   bottom: 0;
   right: 0;
   height: 608px;
   width: 765px;
-  background-image: url('../images/header-image.png');
   background-repeat: no-repeat;
   background-size: cover;
   z-index: 2;
 }
 
-.header__main-illustration { 
+.header__square-pic { 
   position: absolute;
   right: 0;
-  margin-top: 64px;
+  top: 64px;
   width: 568px;
   height: 568px;
   background-color: #2f80ed;
@@ -98,27 +108,26 @@ a {
   margin: auto;
 }
 
-.description__two-columns {
+.two-columns {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin: auto;
   width: 80%;
-  height: auto;
 }
 
-.description__two-columns_brief {
+.two-columns__brief {
   margin: 0 auto 0 0;
   padding: 0;
-  min-width: 175px;
   max-width: 175px;
   line-height: 1.2;
   font-size: 18px;
   font-weight: normal;
   color: #2f80ed;
+  text-decoration: none;
 }
 
-.description__two-columns_main-text {
+.two-columns__main-text {
   flex-direction: column;
   justify-content: space-between;
   width: 80%;
@@ -130,17 +139,20 @@ a {
   color: #000000;
 }
 
-.description__two-columns_paragraph {
-  margin: 0;
+.two-columns__paragraph {
+  margin: 30px 0 30px 0;
 }
 
-.description__two-columns_paragraph_span-accent {
-  margin-top: 30px;
-  margin-bottom: 30px;
+.two-columns__paragraph:first-child {
+  margin-top: 0;
 }
 
-span {
-  font-weight: 600;
+.two-columns__paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.two-columns__span-accent {
+  font-weight: 700;
 }
 
 /* Секция, блок digits */
@@ -157,7 +169,7 @@ span {
   width: 60%;
   line-height: 1.15;
   font-size: 60px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .section-subtitle {
@@ -182,7 +194,7 @@ span {
   z-index: 2;
 }
 
-.table_cell {
+.table__cell {
   list-style-type: none;
   margin: 0;
   margin-top: 60px;
@@ -190,14 +202,14 @@ span {
   height: auto;
 }
 
-.table_heading {
+.table__heading {
   line-height: 1.15;
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 700;
   margin: 0;
 }
 
-.table_text {
+.table__text {
   line-height: 1.2;
   font-size: 18px;
   font-weight: normal;
@@ -211,13 +223,12 @@ span {
   flex-direction: column;
   position: relative;
   align-items: center;
-  height: 790px;
+  min-height: 790px;
   padding-top: 100px;
   background-color: #f2f2f2;
   background-size: cover;
   margin: auto;
   color: #000000;
-  border: 2px solid red;
 }
 
 .feynman__title {
@@ -226,21 +237,20 @@ span {
   margin: 0;
   line-height: 1.15;
   font-size: 120px;
-  font-weight: 600;
+  font-weight: 700;
   text-align: center;
   z-index: 4;
-  border: 2px solid red;
 }
 
 .feynman__subtitle {
   margin-top: 70px;
+  margin-bottom: 0;
   width: auto;
   line-height: 51px;
   font-size: 36px;
   font-weight: normal;
   text-align: center;
   z-index: 3;
-  border: 2px solid red;
 }
 
 .feynman__link {
@@ -256,7 +266,7 @@ span {
   text-align: center;
   color: #2f80ed;
   z-index: 2;
-  border: 2px solid red;
+  text-decoration: none;
 }
 
 .feynman__picture {
@@ -270,7 +280,6 @@ span {
   background-repeat: no-repeat;
   background-size: cover;
   z-index: 1;
-  border: 2px solid red;
 }
 
 /* Секция, блок kaufman */
@@ -288,8 +297,20 @@ span {
   z-index: 1;
 }
 
-.table__text_theme_dark {
+/* Не совсем понял бриф. Зачем присваивать белый цвет текста, каждому заголовку и табличным элементам в отдельности.*/
+.section-title_theme_dark {
   color: white;
+  z-index: 3;
+}
+
+.section-subtitle_theme_dark {
+  color: white;
+  z-index: 3;
+}
+
+.table_theme_dark {
+  color: white;
+  z-index: 3;
 }
 
 /* и элемента с модификатором вида ключ-значение */
@@ -298,7 +319,7 @@ span {
   color: white;
   margin-right: 0;
   margin-top: 80px;
-  
+  z-index: 2;
 }
 
 .kaufman__triangle {
@@ -317,8 +338,11 @@ span {
 /* Подвал сайта, блок footer */
 
 .footer {
+  display: flex;
   padding-top: 60px;
   padding-bottom: 40px;
+  box-sizing: border-box;
+  min-height: 350px;
   margin: 0;
   background-color: #1f1f1f;
   background-size: cover;
@@ -329,67 +353,81 @@ span {
   flex-direction: row;
   justify-content: space-between;
   position: relative;
-  max-width: 1422px;
-  margin: auto;
-  min-height: 350px;
+  margin: 0 auto 0;
+  width: 90%;
 }
 
-.footer__columns_content_copyright {
+.footer__column {
   display: flex;
   flex-direction: column;
+  justify-content: start;
   position: relative;
+}
+
+.footer__column_content_copyright {
+  display: flex;
+  justify-content: space-between;
   flex-basis: 711px;
 }
 
-.footer__columns_content_info {
-  margin: 0;
+.footer__column_content_info {
+  margin-top: 0;
   line-height: 30px;
   font-size: 18px;
   color: #f2f2f2;
 }
 
-.footer__columns_content_social {
-  margin: 0;
+.footer__column_content_social {
+  margin-top: 0;
   line-height: 30px;
   font-size: 18px;
   color: #f2f2f2;
 }
 
 .logo_place_footer {
+  background-image: url('../images/logo_place_footer.svg');
   height: 35px;
   width: 183px;
   z-index: 6;
 }
 
 .footer__author {
-  position: absolute;
-  bottom: 0%;
-  margin-top: 18px;
-  margin-bottom: 18px;
+  margin: 18px 0 18px 0;
   line-height: 25px;
   font-size: 18px;
   font-weight: normal;
+  width: max-content;
   color: #f2f2f2;
 }
 
-.footer__columns-heading {
+.footer__column-heading {
   margin: 0;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .footer__column-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+  list-style: none;
+  padding-left: 0;
   margin-top: 20px;
   margin-bottom: 16px;
 }
 
 .footer__social-icon {
-  align-items: flex-start;
   min-width: 16px;
   min-height: 16px;
   margin-right: 10px;
-  padding: 0 10 0 0;
+  padding: 0;
 }
 
 .footer__column-link {
+  display: flex;
   margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: #f2f2f2;
 }
+
